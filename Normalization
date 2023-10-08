@@ -1,0 +1,13 @@
+My database was already in 3rd Normal Form(3NF).
+
+COFFEESHOP table has primary key "ShopID". All non-prime attributes(ShopName, Location, Rating, and ManagerID) depend on this key.
+
+MENU ITEM table has primary key "ItemID". All non-prime attributes(ItemPrice, ItemCategory, and ShopID) depend on this key.
+
+EMPLOYEE table has primary key "EmployeeID". All non-prime attributes(EmployeeName, ShopID, and ManagerID) depend on this key.
+
+CONTRACT table has primary key "ContractID". All non-prime attributes(SupplierID and ShopID) depend on this key.
+
+SUPPLIER table has primary key "SupplierID". All non-prime attributes(SupplierName and SupplierLocation) depend on this key.
+
+These likewise meet 1NF and 2NF. 
