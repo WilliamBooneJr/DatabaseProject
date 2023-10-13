@@ -34,5 +34,5 @@ Inform decision on where you live.
 See interesting statists on the economy around the world.
 Also enhanced with real-time data and could be a go to calculator to find cost of living with all factors included. 
 
-Changes made to README
+Commit made for Git assignment
 
