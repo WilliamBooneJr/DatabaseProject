@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu Items</title>
+</head>
+<body>
+    <h1>Menu Items</h1>
+    <form action="{{ url_for('manage_menuitem') }}" method="POST">
+        <label for="itemID">Item ID:</label>
+        <input type="text" id="itemID" name="itemID">
+        <br>
+        <label for="itemPrice">Item Price:</label>
+        <input type="text" id="itemPrice" name="itemPrice">
+        <br>
+        <label for="itemCategory">Item Category:</label>
+        <select id="itemCategory" name="itemCategory">
+            {% for category in item_categories %}
+                <option value="{{ category[0] }}">{{ category[0] }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Add Menu Item">
+    </form>
+    <table border="1">
+        <tr>
+            <th>Item ID</th>
+            <th>Item Price</th>
+            <th>Item Category</th>
+            <th>Actions</th>
+        </tr>
+        {% for item_id, item_price, item_category in menu_items %}
+        <tr>
+            <td>{{ item_id }}</td>
+            <td>{{ item_price }}</td>
+            <td>{{ item_category }}</td>
+            <td>
+                <form action="{{ url_for('delete_menuitem', item_id=item_id) }}" method="post">
+                    <input type="submit" value="Delete">
+                </form>
+                <a href="{{ url_for('update_menuitem', item_id=item_id) }}">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

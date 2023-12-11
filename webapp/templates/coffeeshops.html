@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COFFEESHOPS</title>
+</head>
+<body>
+    <h1>Coffee Shops</h1>
+    <form action="{{ url_for('manage_coffeeshop') }}" method="POST"> <!-- Create coffeeshop-->
+        <label for="shopname">Enter Coffee Shop Name:</label>
+        <input type="text" id="shopname" name="shopname">
+        <br>
+        <label for="location">Enter Location:</label>
+        <input type="text" id="location" name="location">
+        <br>
+        <label for="rating">Enter Shop Rating:</label>
+        <input type="text" id="rating" name="rating">
+        <br>
+        <label for="managerID">Enter Manager ID:</label>
+        <select id="managerID" name="managerID">
+            {% for managerId, name, shopId, managerId in managers  %}
+                <option value="{{ managerId}}">{{ name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Add Coffee Shop">
+    </form>
+    <table border="1">
+        <tr>
+            <th>ShopID</th>
+            <th>ShopName</th>
+            <th>Location</th>
+            <th>Rating</th>
+            <th>ManagerID</th>
+            <th>Actions</th>
+        </tr>
+        {% for shopid, shopname, location, rating, managerid in coffeeshop %}
+        <tr>
+            <td>{{ shopid }}</td>
+            <td>{{ shopname }}</td>
+            <td>{{ location }}</td>
+            <td>{{ rating }}</td>
+            <td>{{ managerid }}</td>
+            <td>
+                <form action="{{ url_for('delete_coffeeshop', shop_id=shopid) }}" method="post">
+                    <input type="submit" value="Delete">
+                </form>
+                <a href="{{ url_for('update_coffeeshop', shop_id=shopid) }}">Update</a>
+                
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees</title>
+</head>
+<body>
+    <h1>Employees</h1>
+    <form action="{{ url_for('manage_employee') }}" method="POST">
+        <label for="employeeID">Employee ID:</label>
+        <input type="text" id="employeeID" name="employeeID">
+        <br>
+        <label for="employeeName">Employee Name:</label>
+        <input type="text" id="employeeName" name="employeeName">
+        <br>
+        <label for="shopID">Shop ID:</label>
+        <input type="text" id="shopID" name="shopID">
+        <br>
+        <label for="managerID">Manager ID:</label>
+        <input type="text" id="managerID" name="managerID">
+        <br>
+        <input type="submit" value="Add Employee">
+    </form>
+    <table border="1">
+        <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Shop ID</th>
+            <th>Manager ID</th>
+            <th>Actions</th>
+        </tr>
+        {% for employee_id, employee_name, shop_id, manager_id in employees %}
+        <tr>
+            <td>{{ employee_id }}</td>
+            <td>{{ employee_name }}</td>
+            <td>{{ shop_id }}</td>
+            <td>{{ manager_id }}</td>
+            <td>
+                <form action="{{ url_for('delete_employee', employee_id=employee_id) }}" method="post">
+                    <input type="submit" value="Delete">
+                </form>
+                <a href="{{ url_for('update_employee', employee_id=employee_id) }}">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

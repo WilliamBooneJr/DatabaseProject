@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SUPPLIERS</title>
+</head>
+<body>
+    <h1>SUPPLIERS</h1>
+    <form action="{{ url_for('manage_supplier') }}" method="POST"> <!-- Create supplier-->
+        <label for="suppliername">Enter Supplier Name:</label>
+        <input type="text" id="suppliername" name="suppliername">
+        <br>
+        <label for="supplierlocation">Enter Location:</label>
+        <input type="text" id="supplierlocation" name="supplierlocation">
+        <br>
+        <input type="submit" value="Add Supplier">
+    </form>
+    <table border="1">
+        <tr>
+            <th>SupplierID</th>
+            <th>SupplierName</th>
+            <th>SupplierLocation</th>
+            <th>Actions</th>
+        </tr>
+        {% for supplierid, suppliername, supplierlocation in suppliers %}
+        <tr>
+            <td>{{ supplierid }}</td>
+            <td>{{ suppliername }}</td>
+            <td>{{ supplierlocation }}</td>
+            <td>
+                <form action="{{ url_for('delete_supplier', supplier_id=supplierid) }}" method="post">
+                    <input type="submit" value="Delete">
+                </form>
+                <a href="{{ url_for('update_supplier', supplier_id=supplierid) }}">Update</a>
+                
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

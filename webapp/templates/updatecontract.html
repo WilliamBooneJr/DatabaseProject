@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Contract</title>
+</head>
+<body>
+    <h1>Update Contract</h1>
+    <form action="{{ url_for('update_contract', contract_id=contract_details[0]) }}" method="POST">
+        <label for="supplierID">Select Supplier:</label>
+        <select id="supplierID" name="supplierID">
+            {% for supplierID, suppliername in suppliers %}
+                <option value="{{ supplierID }}" {% if supplierID == contract_details[1] %} selected {% endif %}>{{ suppliername }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        
+        <label for="shopID">Select Coffee Shop:</label>
+        <select id="shopID" name="shopID">
+            {% for shopID, shopname in coffeeshops %}
+                <option value="{{ shopID }}" {% if shopID == contract_details[2] %} selected {% endif %}>{{ shopname }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Update Contract">
+    </form>
+    <a href="{{ url_for('manage_contract') }}">Back to Contracts</a>
+</body>
+</html>

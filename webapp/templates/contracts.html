@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CONTRACTS</title>
+</head>
+<body>
+    <h1>CONTRACTS</h1>
+    <form action="{{ url_for('manage_contract') }}" method="POST"> <!-- Create contract-->
+        <label for="supplierID">Select Supplier:</label>
+        <select id="supplierID" name="supplierID">
+            {% for supplierID, suppliername in suppliers %}
+                <option value="{{supplierID}}">{{ suppliername }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="shopID">Select Coffeeshop:</label>
+        <select id="shopID" name="shopID">
+            {% for shopID, shopname in coffeeshops %}
+                <option value="{{ shopID}}">{{ shopname }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Add Contract">
+    </form>
+    <table border="1">
+        <tr>
+            <th>ContractID</th>
+            <th>SupplierName</th>
+            <th>ShopName</th>
+            <th>Actions</th>
+        </tr>
+        {% for contractID, suppliername, shopname in contracts %}
+        <tr>
+            <td>{{ contractID }}</td>
+            <td>{{ suppliername }}</td>
+            <td>{{ shopname }}</td>
+            <td>
+                <form action="{{ url_for('delete_contract', contract_id=contractID) }}" method="post">
+                    <input type="submit" value="Delete">
+                </form>
+                <a href="{{ url_for('update_contract', contract_id=contractID) }}">Update</a>
+                
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!-- templates/updatecoffeeshop.html -->
+
+<h2>Enter a new value</h2>
+<form action="{{ url_for('update_coffeeshop', shop_id=shop_details[0]) }}" method="POST"> <!-- Update coffeeshop-->
+    <label for="shopname">Update Coffee Shop:</label>
+    <input value = "{{shop_details[1]}}" type="text" id="shopname" name="shopname">
+    <br>
+    <label for="location">Enter Location:</label>
+    <input value  = "{{shop_details[2] }}" type="text" id="location" name="location">
+    <br>
+    <label for="rating">Enter Shop Rating:</label>
+    <input value = "{{shop_details[3]}}" type="text" id="rating" name="rating">
+    <br>
+    <label for="managerID">Enter Manager ID:</label>
+    <select id="managerID" name="managerID">
+        {% for managerId, name, shopId, managerId in managers  %}
+            {% if managerId == shop_details[4] %}
+            <option value="{{managerId}}" selected>{{ name }}</option>
+            {% else %}
+            <option value="{{managerId}}">{{ name }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <br>
+  <input type="submit" value="Update Coffeeshop">
+</form>
+<a href="/">Return to list</a>

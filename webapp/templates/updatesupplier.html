@@ -1,0 +1,13 @@
+<!-- templates/updatesupplier.html -->
+
+<h2>Enter a new value</h2>
+<form action="{{ url_for('update_supplier', supplier_id=supplier_details[0]) }}" method="POST"> <!-- Update supplier-->
+    <label for="suppliername">Update Supplier:</label>
+    <input value = "{{supplier_details[1]}}" type="text" id="suppliername" name="suppliername">
+    <br>
+    <label for="supplierlocation">Enter Location:</label>
+    <input value  = "{{supplier_details[2] }}" type="text" id="supplierlocation" name="supplierlocation">
+    <br>
+  <input type="submit" value="Update Supplier">
+</form>
+<a href="/">Return to list</a>

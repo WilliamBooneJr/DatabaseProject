@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Menu Item</title>
+</head>
+<body>
+    <h1>Update Menu Item</h1>
+    <form action="{{ url_for('update_menuitem', item_id=menu_item[0]) }}" method="POST">
+        <label for="itemPrice">Item Price:</label>
+        <input type="text" id="itemPrice" name="itemPrice" value="{{ menu_item[1] }}">
+        <br>
+        <label for="itemCategory">Item Category:</label>
+        <select id="itemCategory" name="itemCategory">
+            {% for category in item_categories %}
+                <option value="{{ category[0] }}" {% if category[0] == menu_item[2] %} selected {% endif %}>{{ category[0] }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Update Menu Item">
+    </form>
+    <a href="{{ url_for('manage_menuitem') }}">Back to Menu Items</a>
+</body>
+</html>
